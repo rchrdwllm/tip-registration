@@ -1,4 +1,5 @@
 const navLinks = document.querySelectorAll('.step-link');
+const stepHeader = document.querySelector('.step-header');
 
 barba.init({
     transitions: [
@@ -27,7 +28,8 @@ barba.init({
             beforeEnter(data) {
                 updateLink(data.next.namespace);
                 retrieveInputs(data.next.namespace);
-                S;
+
+                stepHeader.textContent = 'Step 3';
             },
             afterLeave(data) {
                 wrapInputs(data.next.container);
@@ -37,8 +39,8 @@ barba.init({
                 const fatherInputsContainer = data.current.container.querySelector('.father');
                 const motherInputsContainer = data.current.container.querySelector('.mother');
 
-                const fatherInputs = saveInputs(fatherInputsContainer, 'fatherInputs');
-                const motherInputs = saveInputs(motherInputsContainer, 'motherInputs');
+                const fatherInputs = saveInputs(fatherInputsContainer);
+                const motherInputs = saveInputs(motherInputsContainer);
 
                 sessionStorage.setItem(
                     'family',
@@ -53,6 +55,26 @@ barba.init({
             namespace: 'education',
             beforeEnter(data) {
                 updateLink(data.next.namespace);
+                retrieveInputs(data.next.namespace);
+
+                stepHeader.textContent = 'Step 4';
+            },
+            afterLeave(data) {
+                wrapInputs(data.next.container);
+                addInputValidations(data.next.container);
+            },
+            beforeLeave(data) {
+                const inputs = saveInputs(data.current.container);
+
+                sessionStorage.setItem('education', JSON.stringify({ ...inputs }));
+            },
+        },
+        {
+            namespace: 'confirmation',
+            beforeEnter(data) {
+                updateLink(data.next.namespace);
+
+                stepHeader.textContent = 'Step 5';
             },
             afterLeave(data) {
                 wrapInputs(data.next.container);
@@ -147,7 +169,7 @@ function addInputValidations(container) {
     });
 }
 
-function saveInputs(container, name) {
+function saveInputs(container) {
     const item = {};
 
     container.querySelectorAll('input').forEach(input => {
