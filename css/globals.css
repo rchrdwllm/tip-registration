@@ -35,6 +35,7 @@ span {
 input,
 button {
     display: block;
+    background-color: transparent;
     font-size: inherit;
     font-family: inherit;
     border: none;
