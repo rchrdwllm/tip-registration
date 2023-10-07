@@ -26,10 +26,27 @@ barba.init({
             namespace: 'family',
             beforeEnter(data) {
                 updateLink(data.next.namespace);
+                retrieveInputs(data.next.namespace);
+                S;
             },
             afterLeave(data) {
                 wrapInputs(data.next.container);
                 addInputValidations(data.next.container);
+            },
+            beforeLeave(data) {
+                const fatherInputsContainer = data.current.container.querySelector('.father');
+                const motherInputsContainer = data.current.container.querySelector('.mother');
+
+                const fatherInputs = saveInputs(fatherInputsContainer, 'fatherInputs');
+                const motherInputs = saveInputs(motherInputsContainer, 'motherInputs');
+
+                sessionStorage.setItem(
+                    'family',
+                    JSON.stringify({
+                        fatherInputs,
+                        motherInputs,
+                    })
+                );
             },
         },
         {
@@ -128,6 +145,36 @@ function addInputValidations(container) {
             }
         });
     });
+}
+
+function saveInputs(container, name) {
+    const item = {};
+
+    container.querySelectorAll('input').forEach(input => {
+        item[input.name] = input.value;
+    });
+
+    return item;
+}
+
+function retrieveInputs(namespace) {
+    const inputs = JSON.parse(sessionStorage.getItem(namespace));
+
+    if (namespace === 'family') {
+        const { fatherInputs, motherInputs } = inputs;
+
+        Object.keys(fatherInputs).forEach(input => {
+            document.querySelector(`.father input[name="${input}"]`).value = fatherInputs[input];
+        });
+
+        Object.keys(motherInputs).forEach(input => {
+            document.querySelector(`.mother input[name="${input}"]`).value = motherInputs[input];
+        });
+    } else {
+        Object.keys(inputs).forEach(input => {
+            document.querySelector(`input[name="${input}"]`).value = inputs[input];
+        });
+    }
 }
 
 wrapInputs(document);
