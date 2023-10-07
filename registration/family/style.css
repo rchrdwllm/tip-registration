@@ -92,7 +92,7 @@ main {
 .input-container::before {
     position: absolute;
     display: block;
-    bottom: -4rem;
+    bottom: -3.75rem;
     left: 1rem;
     content: attr(active-hint);
     width: 100%;
