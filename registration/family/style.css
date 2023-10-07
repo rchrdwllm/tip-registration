@@ -37,6 +37,10 @@ aside > p {
     transition: 0.25s opacity;
 }
 
+.step-links .step-link:hover {
+    opacity: 1;
+}
+
 .step-links .step-link.active {
     opacity: 1;
 }
