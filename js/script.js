@@ -141,7 +141,7 @@ barba.init({
                     JSON.stringify({
                         fatherInputs,
                         motherInputs,
-                    })
+                    }),
                 );
             },
             afterEnter(data) {
@@ -207,9 +207,7 @@ barba.init({
 
                 document.body.classList.add('confirmation');
 
-                const confirmationLink = document.querySelector(
-                    '.step-link[data-namespace="confirmation"]'
-                );
+                const confirmationLink = document.querySelector('.step-link[data-namespace="confirmation"]');
 
                 confirmationLink.style.opacity = 1;
             },
@@ -256,20 +254,15 @@ function addInputValidations(container) {
         const keys = Object.keys(dataset);
 
         const regex = /(?:regex|hint)-(\d)/;
-        const indices = keys
-            .map(v => {
-                const match = regex.exec(v);
-                if (match == null) {
-                    return null;
-                }
+        const indices = new Set();
+        keys.forEach(key => {
+            const match = regex.exec(key);
+            if (match == null) {
+                return;
+            }
 
-                return parseInt(match[1]);
-            })
-            .reduce((a, b) => {
-                a.add(b);
-
-                return a;
-            }, new Set());
+            indices.add(parseInt(match[1]));
+        });
 
         let previous = el.value;
         el.addEventListener('focus', () => {
