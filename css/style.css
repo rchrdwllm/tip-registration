@@ -1,7 +1,7 @@
 .registration-body {
     display: grid;
     grid-template-columns: 30% 70%;
-    height: 100vh;
+    min-height: 100vh;
     color: var(--text);
     background-color: var(--background);
     overflow-x: hidden;
@@ -38,6 +38,10 @@ aside > p {
 
 .step-links a:not(:first-child) {
     margin-top: 1rem;
+}
+
+.step-links a[href='/registration/confirmation'] {
+    pointer-events: none;
 }
 
 .step-links .step-link {

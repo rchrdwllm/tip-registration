@@ -218,6 +218,15 @@ barba.init({
                     barba.go('/');
                 });
             },
+            beforeLeave() {
+                document.body.classList.remove('confirmation');
+
+                const confirmationLink = document.querySelector(
+                    '.step-link[data-namespace="confirmation"]'
+                );
+
+                confirmationLink.style.opacity = 0.5;
+            },
         },
     ],
 });
