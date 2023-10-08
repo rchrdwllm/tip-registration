@@ -1,3 +1,4 @@
+const namespaceContainer = document.querySelector('[data-barba-namespace]');
 const navLinks = document.querySelectorAll('.step-link');
 const stepHeader = document.querySelector('.step-header');
 const sidebar = document.querySelector('aside');
@@ -326,3 +327,6 @@ barba.hooks.afterLeave(data => {
     wrapInputs(data.next.container);
     addInputValidations(data.next.container);
 });
+
+wrapInputs(namespaceContainer);
+addInputValidations(namespaceContainer);
