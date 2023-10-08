@@ -1,4 +1,9 @@
+const namespaceContainer = document.querySelector('[data-barba-namespace]');
 const navLinks = document.querySelectorAll('.step-link');
+const stepHeader = document.querySelector('.step-header');
+const sidebar = document.querySelector('aside');
+
+barba.use(barbaPrefetch);
 
 barba.init({
     transitions: [
@@ -6,7 +11,7 @@ barba.init({
             name: 'opacity-transition',
             leave(data) {
                 return gsap.to(data.current.container, {
-                    y: '-50%',
+                    x: '-50%',
                     opacity: 0,
                     display: 'none',
                     ease: 'power4.out',
@@ -15,30 +20,121 @@ barba.init({
             enter(data) {
                 return gsap.from(data.next.container, {
                     opacity: 0,
-                    y: '50%',
+                    x: '50%',
                     ease: 'power4.out',
                 });
+            },
+            from: {
+                namespace: ['family', 'education', 'confirmation'],
+            },
+            to: {
+                namespace: ['family', 'education', 'confirmation'],
+            },
+        },
+        {
+            name: 'left-swipe-transition',
+            leave() {
+                const slider = document.querySelector('.slider');
+
+                return gsap.to(slider, {
+                    x: '0%',
+                    ease: 'power4.out',
+                    duration: 0.75,
+                });
+            },
+            enter() {
+                const slider = document.querySelector('.slider');
+                const tl = gsap.timeline();
+
+                tl.to(slider, {
+                    x: '-100%',
+                    ease: 'power4.out',
+                    duration: 0.75,
+                });
+
+                tl.set(slider, {
+                    x: '100%',
+                });
+            },
+            from: {
+                namespace: ['home'],
+            },
+            to: {
+                namespace: ['family', 'education', 'confirmation'],
+            },
+        },
+        {
+            name: 'right-swipe-transition',
+            leave() {
+                const slider = document.querySelector('.slider');
+
+                return gsap.to(slider, {
+                    x: '0%',
+                    ease: 'power4.out',
+                    duration: 0.75,
+                });
+            },
+            enter() {
+                const slider = document.querySelector('.slider');
+                const tl = gsap.timeline();
+
+                tl.to(slider, {
+                    x: '-100%',
+                    ease: 'power4.out',
+                    duration: 0.75,
+                });
+
+                tl.set(slider, {
+                    x: '100%',
+                });
+            },
+            from: {
+                namespace: ['confirmation', 'family', 'education'],
+            },
+            to: {
+                namespace: ['home'],
             },
         },
     ],
     views: [
         {
+            namespace: 'home',
+            beforeEnter() {
+                document.body.classList.add('home-body');
+                document.body.classList.remove('registration-body');
+                sidebar.classList.remove('active');
+            },
+            afterEnter() {
+                sidebar.classList.remove('active');
+            },
+        },
+        {
             namespace: 'family',
             beforeEnter(data) {
+                if (!document.body.classList.contains('registration-home')) {
+                    document.body.classList.add('registration-body');
+                    document.body.classList.remove('home-body');
+                    sidebar.classList.add('active');
+
+                    stepHeader.textContent = 'Step 3';
+
+                    updateLink(data.next.namespace);
+                    retrieveInputs(data.next.namespace);
+
+                    return;
+                }
+
+                stepHeader.textContent = 'Step 3';
+
                 updateLink(data.next.namespace);
                 retrieveInputs(data.next.namespace);
-                S;
-            },
-            afterLeave(data) {
-                wrapInputs(data.next.container);
-                addInputValidations(data.next.container);
             },
             beforeLeave(data) {
                 const fatherInputsContainer = data.current.container.querySelector('.father');
                 const motherInputsContainer = data.current.container.querySelector('.mother');
 
-                const fatherInputs = saveInputs(fatherInputsContainer, 'fatherInputs');
-                const motherInputs = saveInputs(motherInputsContainer, 'motherInputs');
+                const fatherInputs = saveInputs(fatherInputsContainer);
+                const motherInputs = saveInputs(motherInputsContainer);
 
                 sessionStorage.setItem(
                     'family',
@@ -48,15 +144,81 @@ barba.init({
                     })
                 );
             },
+            afterEnter(data) {
+                const submitBtn = data.next.container.querySelector('.submit-btn');
+                const backBtn = data.next.container.querySelector('.back-btn');
+
+                submitBtn.addEventListener('click', () => {
+                    barba.go('/registration/education');
+                });
+                backBtn.addEventListener('click', () => {
+                    barba.go('/');
+                });
+            },
         },
         {
             namespace: 'education',
             beforeEnter(data) {
+                if (!document.body.classList.contains('registration-home')) {
+                    document.body.classList.add('registration-body');
+                    document.body.classList.remove('home-body');
+                    sidebar.classList.add('active');
+
+                    stepHeader.textContent = 'Step 4';
+
+                    updateLink(data.next.namespace);
+                    retrieveInputs(data.next.namespace);
+
+                    return;
+                }
+
+                stepHeader.textContent = 'Step 4';
+
                 updateLink(data.next.namespace);
+                retrieveInputs(data.next.namespace);
             },
-            afterLeave(data) {
-                wrapInputs(data.next.container);
-                addInputValidations(data.next.container);
+            beforeLeave(data) {
+                const inputs = saveInputs(data.current.container);
+
+                sessionStorage.setItem('education', JSON.stringify({ ...inputs }));
+            },
+            afterEnter(data) {
+                const submitBtn = data.next.container.querySelector('.submit-btn');
+                const backBtn = data.next.container.querySelector('.back-btn');
+
+                submitBtn.addEventListener('click', () => {
+                    barba.go('/registration/confirmation');
+                });
+                backBtn.addEventListener('click', () => {
+                    barba.go('/registration/family');
+                });
+            },
+        },
+        {
+            namespace: 'confirmation',
+            beforeEnter(data) {
+                updateLink(data.next.namespace);
+
+                stepHeader.textContent = 'Step 5';
+
+                if (!sidebar.classList.contains('active')) {
+                    sidebar.classList.add('active');
+                }
+
+                document.body.classList.add('confirmation');
+
+                const confirmationLink = document.querySelector(
+                    '.step-link[data-namespace="confirmation"]'
+                );
+
+                confirmationLink.style.opacity = 1;
+            },
+            afterEnter(data) {
+                const home = data.next.container.querySelector('.home-btn');
+
+                home.addEventListener('click', () => {
+                    barba.go('/');
+                });
             },
         },
     ],
@@ -147,7 +309,7 @@ function addInputValidations(container) {
     });
 }
 
-function saveInputs(container, name) {
+function saveInputs(container) {
     const item = {};
 
     container.querySelectorAll('input').forEach(input => {
@@ -177,5 +339,10 @@ function retrieveInputs(namespace) {
     }
 }
 
-wrapInputs(document);
-addInputValidations(document);
+barba.hooks.afterLeave(data => {
+    wrapInputs(data.next.container);
+    addInputValidations(data.next.container);
+});
+
+wrapInputs(namespaceContainer);
+addInputValidations(namespaceContainer);
