@@ -146,9 +146,13 @@ barba.init({
             },
             afterEnter(data) {
                 const submitBtn = data.next.container.querySelector('.submit-btn');
+                const backBtn = data.next.container.querySelector('.back-btn');
 
                 submitBtn.addEventListener('click', () => {
                     barba.go('/registration/education');
+                });
+                backBtn.addEventListener('click', () => {
+                    barba.go('/');
                 });
             },
         },
@@ -180,9 +184,13 @@ barba.init({
             },
             afterEnter(data) {
                 const submitBtn = data.next.container.querySelector('.submit-btn');
+                const backBtn = data.next.container.querySelector('.back-btn');
 
                 submitBtn.addEventListener('click', () => {
                     barba.go('/registration/confirmation');
+                });
+                backBtn.addEventListener('click', () => {
+                    barba.go('/registration/family');
                 });
             },
         },
@@ -196,6 +204,14 @@ barba.init({
                 if (!sidebar.classList.contains('active')) {
                     sidebar.classList.add('active');
                 }
+
+                document.body.classList.add('confirmation');
+
+                const confirmationLink = document.querySelector(
+                    '.step-link[data-namespace="confirmation"]'
+                );
+
+                confirmationLink.style.opacity = 1;
             },
             afterEnter(data) {
                 const home = data.next.container.querySelector('.home-btn');
