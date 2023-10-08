@@ -1,5 +1,8 @@
 const navLinks = document.querySelectorAll('.step-link');
 const stepHeader = document.querySelector('.step-header');
+const sidebar = document.querySelector('aside');
+
+barba.use(barbaPrefetch);
 
 barba.init({
     transitions: [
@@ -7,7 +10,7 @@ barba.init({
             name: 'opacity-transition',
             leave(data) {
                 return gsap.to(data.current.container, {
-                    y: '-50%',
+                    x: '-50%',
                     opacity: 0,
                     display: 'none',
                     ease: 'power4.out',
@@ -16,24 +19,112 @@ barba.init({
             enter(data) {
                 return gsap.from(data.next.container, {
                     opacity: 0,
-                    y: '50%',
+                    x: '50%',
                     ease: 'power4.out',
                 });
+            },
+            from: {
+                namespace: ['family', 'education', 'confirmation'],
+            },
+            to: {
+                namespace: ['family', 'education', 'confirmation'],
+            },
+        },
+        {
+            name: 'left-swipe-transition',
+            leave() {
+                const slider = document.querySelector('.slider');
+
+                return gsap.to(slider, {
+                    x: '0%',
+                    ease: 'power4.out',
+                    duration: 0.75,
+                });
+            },
+            enter() {
+                const slider = document.querySelector('.slider');
+                const tl = gsap.timeline();
+
+                tl.to(slider, {
+                    x: '-100%',
+                    ease: 'power4.out',
+                    duration: 0.75,
+                });
+
+                tl.set(slider, {
+                    x: '100%',
+                });
+            },
+            from: {
+                namespace: ['home'],
+            },
+            to: {
+                namespace: ['family', 'education', 'confirmation'],
+            },
+        },
+        {
+            name: 'right-swipe-transition',
+            leave() {
+                const slider = document.querySelector('.slider');
+
+                return gsap.to(slider, {
+                    x: '0%',
+                    ease: 'power4.out',
+                    duration: 0.75,
+                });
+            },
+            enter() {
+                const slider = document.querySelector('.slider');
+                const tl = gsap.timeline();
+
+                tl.to(slider, {
+                    x: '-100%',
+                    ease: 'power4.out',
+                    duration: 0.75,
+                });
+
+                tl.set(slider, {
+                    x: '100%',
+                });
+            },
+            from: {
+                namespace: ['confirmation', 'family', 'education'],
+            },
+            to: {
+                namespace: ['home'],
             },
         },
     ],
     views: [
         {
+            namespace: 'home',
+            beforeEnter() {
+                document.body.classList.add('home-body');
+                document.body.classList.remove('registration-body');
+                sidebar.classList.remove('active');
+            },
+            afterEnter() {
+                sidebar.classList.remove('active');
+            },
+        },
+        {
             namespace: 'family',
             beforeEnter(data) {
                 updateLink(data.next.namespace);
                 retrieveInputs(data.next.namespace);
+                wrapInputs();
+                addInputValidations();
 
                 stepHeader.textContent = 'Step 3';
-            },
-            afterLeave(data) {
-                wrapInputs(data.next.container);
-                addInputValidations(data.next.container);
+
+                if (!document.body.classList.contains('registration-home')) {
+                    document.body.classList.add('registration-body');
+                    document.body.classList.remove('home-body');
+                }
+
+                if (!sidebar.classList.contains('active')) {
+                    sidebar.classList.add('active');
+                }
             },
             beforeLeave(data) {
                 const fatherInputsContainer = data.current.container.querySelector('.father');
@@ -50,23 +141,39 @@ barba.init({
                     })
                 );
             },
+            afterEnter(data) {
+                const submitBtn = data.next.container.querySelector('.submit-btn');
+
+                submitBtn.addEventListener('click', () => {
+                    barba.go('/registration/education');
+                });
+            },
         },
         {
             namespace: 'education',
             beforeEnter(data) {
                 updateLink(data.next.namespace);
                 retrieveInputs(data.next.namespace);
+                wrapInputs();
+                addInputValidations();
 
                 stepHeader.textContent = 'Step 4';
-            },
-            afterLeave(data) {
-                wrapInputs(data.next.container);
-                addInputValidations(data.next.container);
+
+                if (!sidebar.classList.contains('active')) {
+                    sidebar.classList.add('active');
+                }
             },
             beforeLeave(data) {
                 const inputs = saveInputs(data.current.container);
 
                 sessionStorage.setItem('education', JSON.stringify({ ...inputs }));
+            },
+            afterEnter(data) {
+                const submitBtn = data.next.container.querySelector('.submit-btn');
+
+                submitBtn.addEventListener('click', () => {
+                    barba.go('/registration/confirmation');
+                });
             },
         },
         {
@@ -75,10 +182,21 @@ barba.init({
                 updateLink(data.next.namespace);
 
                 stepHeader.textContent = 'Step 5';
+
+                if (!sidebar.classList.contains('active')) {
+                    sidebar.classList.add('active');
+                }
             },
             afterLeave(data) {
                 wrapInputs(data.next.container);
                 addInputValidations(data.next.container);
+            },
+            afterEnter(data) {
+                const home = data.next.container.querySelector('.home-btn');
+
+                home.addEventListener('click', () => {
+                    barba.go('/');
+                });
             },
         },
     ],
@@ -96,8 +214,8 @@ function updateLink(namespace) {
     });
 }
 
-function wrapInputs(container) {
-    container.querySelectorAll('input').forEach(el => {
+function wrapInputs() {
+    document.querySelectorAll('input').forEach(el => {
         const clone = el.cloneNode();
         const wrapper = document.createElement('div');
 
@@ -110,8 +228,8 @@ function wrapInputs(container) {
     });
 }
 
-function addInputValidations(container) {
-    container.querySelectorAll('input').forEach(el => {
+function addInputValidations() {
+    document.querySelectorAll('input').forEach(el => {
         const dataset = el.dataset;
         const keys = Object.keys(dataset);
 
@@ -198,6 +316,3 @@ function retrieveInputs(namespace) {
         });
     }
 }
-
-wrapInputs(document);
-addInputValidations(document);
