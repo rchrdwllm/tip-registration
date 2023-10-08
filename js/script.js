@@ -110,21 +110,23 @@ barba.init({
         {
             namespace: 'family',
             beforeEnter(data) {
-                updateLink(data.next.namespace);
-                retrieveInputs(data.next.namespace);
-                wrapInputs();
-                addInputValidations();
-
-                stepHeader.textContent = 'Step 3';
-
                 if (!document.body.classList.contains('registration-home')) {
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
+                    sidebar.classList.add('active');
+
+                    stepHeader.textContent = 'Step 3';
+
+                    updateLink(data.next.namespace);
+                    retrieveInputs(data.next.namespace);
+
+                    return;
                 }
 
-                if (!sidebar.classList.contains('active')) {
-                    sidebar.classList.add('active');
-                }
+                stepHeader.textContent = 'Step 3';
+
+                updateLink(data.next.namespace);
+                retrieveInputs(data.next.namespace);
             },
             beforeLeave(data) {
                 const fatherInputsContainer = data.current.container.querySelector('.father');
@@ -152,16 +154,23 @@ barba.init({
         {
             namespace: 'education',
             beforeEnter(data) {
-                updateLink(data.next.namespace);
-                retrieveInputs(data.next.namespace);
-                wrapInputs();
-                addInputValidations();
+                if (!document.body.classList.contains('registration-home')) {
+                    document.body.classList.add('registration-body');
+                    document.body.classList.remove('home-body');
+                    sidebar.classList.add('active');
+
+                    stepHeader.textContent = 'Step 4';
+
+                    updateLink(data.next.namespace);
+                    retrieveInputs(data.next.namespace);
+
+                    return;
+                }
 
                 stepHeader.textContent = 'Step 4';
 
-                if (!sidebar.classList.contains('active')) {
-                    sidebar.classList.add('active');
-                }
+                updateLink(data.next.namespace);
+                retrieveInputs(data.next.namespace);
             },
             beforeLeave(data) {
                 const inputs = saveInputs(data.current.container);
@@ -187,10 +196,6 @@ barba.init({
                     sidebar.classList.add('active');
                 }
             },
-            afterLeave(data) {
-                wrapInputs(data.next.container);
-                addInputValidations(data.next.container);
-            },
             afterEnter(data) {
                 const home = data.next.container.querySelector('.home-btn');
 
@@ -214,8 +219,8 @@ function updateLink(namespace) {
     });
 }
 
-function wrapInputs() {
-    document.querySelectorAll('input').forEach(el => {
+function wrapInputs(container) {
+    container.querySelectorAll('input').forEach(el => {
         const clone = el.cloneNode();
         const wrapper = document.createElement('div');
 
@@ -228,8 +233,8 @@ function wrapInputs() {
     });
 }
 
-function addInputValidations() {
-    document.querySelectorAll('input').forEach(el => {
+function addInputValidations(container) {
+    container.querySelectorAll('input').forEach(el => {
         const dataset = el.dataset;
         const keys = Object.keys(dataset);
 
@@ -316,3 +321,8 @@ function retrieveInputs(namespace) {
         });
     }
 }
+
+barba.hooks.afterLeave(data => {
+    wrapInputs(data.next.container);
+    addInputValidations(data.next.container);
+});
