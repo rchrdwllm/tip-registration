@@ -149,7 +149,9 @@ barba.init({
                 const backBtn = data.next.container.querySelector('.back-btn');
 
                 submitBtn.addEventListener('click', () => {
-                    barba.go('/registration/education');
+                    if (validateInputs()) {
+                        barba.go('/registration/education');
+                    }
                 });
                 backBtn.addEventListener('click', () => {
                     barba.go('/');
@@ -293,7 +295,7 @@ function validateInput(input) {
     }
 
     if (!hasFailed) {
-        el.parentElement.classList.remove('error');
+        input.parentElement.classList.remove('error');
     }
 
     return !hasFailed;
@@ -359,12 +361,10 @@ function loadRandomStudentNumber() {
 }
 
 function validateInputs() {
-    const inputs = document.querySelectorAll('input');
-    let isValid = true;
-
-    inputs.forEach(input => {
-        isValid &&= validateInput(input);
-    });
+    const inputs = [...document.querySelectorAll('input')];
+    const isValid = inputs //
+        .map(input => validateInput(input))
+        .reduce((acc, input) => acc && input, true);
 
     return isValid;
 }
