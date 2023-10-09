@@ -338,6 +338,7 @@ footer .back-btn:hover svg {
     display: flex;
     align-items: center;
     margin-top: 2rem;
+    width: max-content;
 }
 
 .home-body a:hover {
