@@ -95,7 +95,7 @@
                             <input
                                 class="input"
                                 type="text"
-                                placeholder="Suffix (optional)"
+                                placeholder="Suffix (Optional)"
                                 name="suffix"
                                 data-regex-0="^[^\d]*$"
                                 data-hint-0="Suffix must not include any number"
@@ -109,6 +109,8 @@
                                 placeholder="Email address"
                                 data-regex-0="^.+$"
                                 data-hint-0="Name must not be empty"
+                                data-regex-1="^\w+(\.\w+)+@\w+(\.\w+)+$"
+                                data-hint-1="Email address must be valid"
                             />
                         </div>
                         <div class="contact-number">
@@ -143,7 +145,7 @@
                                 class="input"
                                 type="text"
                                 name="middleName"
-                                placeholder="Middle name (optional)"
+                                placeholder="Middle name (Optional)"
                                 data-regex-0="^[^\d]*$"
                                 data-hint-0="Name must not include any number"
                             />
@@ -164,7 +166,7 @@
                             <input
                                 class="input"
                                 type="text"
-                                placeholder="Suffix (optional)"
+                                placeholder="Suffix (Optional)"
                                 name="suffix"
                                 data-regex-0="^[^\d]*$"
                                 data-hint-0="Suffix must not include any number"
@@ -177,7 +179,9 @@
                                 name="email"
                                 placeholder="Email address"
                                 data-regex-0="^.+$"
-                                data-hint-0="Name must not be empty"
+                                data-hint-0="Email address must not be empty"
+                                data-regex-1="^\w+(\.\w+)+@\w+(\.\w+)+$"
+                                data-hint-1="Email address must be valid"
                             />
                         </div>
                         <div class="contact-number">
