@@ -17,10 +17,7 @@
             <p>Enter your information so that we can know you better!</p>
             <div class="step-links">
                 <a href="/registration/personal-information">
-                    <div
-                        class="step-link personal-information"
-                        data-namespace="personal-information"
-                    >
+                    <div class="step-link personal-information" data-namespace="personal-information">
                         <div class="step-number">
                             <h2>1</h2>
                         </div>
@@ -104,6 +101,16 @@
                                 data-hint-1="Last name must not be empty"
                             />
                         </div>
+                        <div class="suffix">
+                            <input
+                                class="input"
+                                type="text"
+                                placeholder="Suffix (optional)"
+                                name="suffix"
+                                data-regex-0="^[^\d]+$"
+                                data-hint-0="Suffix must not include any number"
+                            />
+                        </div>
                         <div class="email">
                             <input
                                 class="input"
@@ -146,7 +153,7 @@
                                 class="input"
                                 type="text"
                                 name="middleName"
-                                placeholder="Middle name"
+                                placeholder="Middle name (optional)"
                                 data-regex-0="^[^\d]+$"
                                 data-hint-0="Name must not include any number"
                             />
@@ -161,6 +168,16 @@
                                 data-hint-0="Last name must not include any number"
                                 data-regex-1="^.+$"
                                 data-hint-1="Last name must not be empty"
+                            />
+                        </div>
+                        <div class="suffix">
+                            <input
+                                class="input"
+                                type="text"
+                                placeholder="Suffix (optional)"
+                                name="suffix"
+                                data-regex-0="^[^\d]+$"
+                                data-hint-0="Suffix must not include any number"
                             />
                         </div>
                         <div class="email">
@@ -195,11 +212,7 @@
                             stroke="currentColor"
                             class="w-6 h-6"
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M15.75 19.5L8.25 12l7.5-7.5"
-                            />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                         </svg>
                         <p>Back</p>
                     </button>
@@ -212,11 +225,7 @@
                             stroke-width="1.5"
                             stroke="currentColor"
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                            />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                         </svg>
                     </button>
                 </footer>
