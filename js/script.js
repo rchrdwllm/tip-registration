@@ -187,7 +187,9 @@ barba.init({
                 const backBtn = data.next.container.querySelector('.back-btn');
 
                 submitBtn.addEventListener('click', () => {
-                    barba.go('/registration/confirmation');
+                    if (validateInputs()) {
+                        barba.go('/registration/confirmation');
+                    }
                 });
                 backBtn.addEventListener('click', () => {
                     barba.go('/registration/family');
@@ -210,10 +212,11 @@ barba.init({
                 const confirmationLink = document.querySelector('.step-link[data-namespace="confirmation"]');
 
                 confirmationLink.style.opacity = 1;
+
+                loadRandomStudentNumber();
             },
             afterEnter(data) {
                 const home = data.next.container.querySelector('.home-btn');
-
                 home.addEventListener('click', () => {
                     barba.go('/');
                 });
@@ -221,9 +224,7 @@ barba.init({
             beforeLeave() {
                 document.body.classList.remove('confirmation');
 
-                const confirmationLink = document.querySelector(
-                    '.step-link[data-namespace="confirmation"]'
-                );
+                const confirmationLink = document.querySelector('.step-link[data-namespace="confirmation"]');
 
                 confirmationLink.style.opacity = 0.5;
             },
@@ -257,22 +258,49 @@ function wrapInputs(container) {
     });
 }
 
+/**
+ *
+ * @param {HTMLElement} input
+ * @returns {boolean} whether the input tag is valid or not.
+ */
+function validateInput(input) {
+    const keys = Object.keys(input.dataset);
+    const regex = /(?:regex|hint)-(\d)/;
+    const indices = new Set();
+    keys.forEach(key => {
+        const match = regex.exec(key);
+        if (match == null) {
+            return;
+        }
+
+        indices.add(parseInt(match[1]));
+    });
+
+    let hasFailed = false;
+    for (const index of indices) {
+        const regexp = new RegExp(input.dataset[`regex-${index}`], 'gi');
+        const hint = input.dataset[`hint-${index}`];
+
+        const succeeds = regexp.test(input.value);
+        if (!succeeds) {
+            input.parentElement.setAttribute('active-hint', hint);
+            input.parentElement.classList.add('error');
+            hasFailed = true;
+
+            // no foreach :P
+            break;
+        }
+    }
+
+    if (!hasFailed) {
+        el.parentElement.classList.remove('error');
+    }
+
+    return !hasFailed;
+}
+
 function addInputValidations(container) {
     container.querySelectorAll('input').forEach(el => {
-        const dataset = el.dataset;
-        const keys = Object.keys(dataset);
-
-        const regex = /(?:regex|hint)-(\d)/;
-        const indices = new Set();
-        keys.forEach(key => {
-            const match = regex.exec(key);
-            if (match == null) {
-                return;
-            }
-
-            indices.add(parseInt(match[1]));
-        });
-
         let previous = el.value;
         el.addEventListener('focus', () => {
             previous = el.value;
@@ -288,25 +316,7 @@ function addInputValidations(container) {
             /// If the data *has* changed, then we should validate.
 
             /// Flag that indicates whether any validation has failed.
-            let hasFailed = false;
-            for (const index of indices) {
-                const regexp = new RegExp(el.dataset[`regex-${index}`], 'gi');
-                const hint = el.dataset[`hint-${index}`];
-
-                const succeeds = regexp.test(el.value);
-                if (!succeeds) {
-                    el.parentElement.setAttribute('active-hint', hint);
-                    el.parentElement.classList.add('error');
-                    hasFailed = true;
-
-                    // no foreach :P
-                    break;
-                }
-            }
-
-            if (!hasFailed) {
-                el.parentElement.classList.remove('error');
-            }
+            validateInput(el);
         });
     });
 }
@@ -339,6 +349,24 @@ function retrieveInputs(namespace) {
             document.querySelector(`input[name="${input}"]`).value = inputs[input];
         });
     }
+}
+
+function loadRandomStudentNumber() {
+    const studentNumber = document.querySelector('#student-number');
+    const randomStudentNumber = Math.floor(Math.random() * 10000000);
+
+    studentNumber.textContent = randomStudentNumber;
+}
+
+function validateInputs() {
+    const inputs = document.querySelectorAll('input');
+    let isValid = true;
+
+    inputs.forEach(input => {
+        isValid &&= validateInput(input);
+    });
+
+    return isValid;
 }
 
 barba.hooks.afterLeave(data => {
