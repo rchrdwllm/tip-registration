@@ -9,7 +9,7 @@
 
 aside {
     background-color: var(--accent);
-    padding: 4rem;
+    padding: 2rem 4rem;
     display: none;
     position: relative;
     z-index: 1;
@@ -75,13 +75,13 @@ aside > p {
 }
 
 main {
-    max-height: 100vh;
-    overflow-y: auto;
     overflow-x: hidden;
 }
 
-.container {
-    padding: 4rem;
+.registration-body .container {
+    padding: 2rem 4rem;
+    max-height: 100vh;
+    overflow-y: auto;
 }
 
 .container header img {
