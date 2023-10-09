@@ -32,16 +32,8 @@ aside > p {
     margin-top: 3rem;
 }
 
-.step-links a {
-    display: block;
-}
-
-.step-links a:not(:first-child) {
+.step-links .step-link:not(:first-child) {
     margin-top: 1rem;
-}
-
-.step-links a[href='/registration/confirmation'] {
-    pointer-events: none;
 }
 
 .step-links .step-link {
@@ -49,10 +41,6 @@ aside > p {
     align-items: center;
     opacity: 0.5;
     transition: 0.25s opacity;
-}
-
-.step-links .step-link:hover {
-    opacity: 1;
 }
 
 .step-links .step-link.active {
@@ -126,6 +114,7 @@ main {
     transform: translateY(-1rem);
     transition: 0.25s opacity, 0.25s transform;
     font-size: 0.75rem;
+    z-index: -1;
 }
 
 .input-container.error::before {
