@@ -3,3 +3,4 @@
 (So far na mga napansin q)
 
 -   [ ] Email inputs accept any string input (must be "@" followed by domain)
+-   [ ] Wait yung steps 1 and 2 from Micha then ipag-connect ang everything
