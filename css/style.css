@@ -144,6 +144,81 @@ main {
     color: var(--text);
 }
 
+.subgrid {
+    grid-column: 1 / 7;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1rem;
+}
+
+.personal-information-grid .first-name {
+    grid-column: 1 / 4;
+}
+
+.personal-information-grid .middle-name {
+    grid-column: 4 / 7;
+}
+
+.personal-information-grid .last-name {
+    grid-column: 1 / 4;
+}
+
+.personal-information-grid .suffix {
+    grid-column: 4 / 7;
+}
+
+.personal-information-grid .email {
+    grid-column: 1 / 4;
+}
+
+.personal-information-grid .password {
+    grid-column: 4 / 7;
+}
+
+.personal-information-grid .year-level {
+    grid-column: 1 / 3;
+}
+
+.personal-information-grid .student-type {
+    grid-column: 3 / 5;
+}
+
+.personal-information-grid .school-year {
+    grid-column: 5 / 7;
+}
+
+.personal-information-grid .program {
+    grid-column: 1 / 5;
+}
+
+.personal-information-grid .gender {
+    grid-column: 5 / 7;
+}
+
+.personal-information-grid .civil-status {
+    grid-column: 7 / 9;
+}
+
+.personal-information-grid .birthplace {
+    grid-column: 1 / 5;
+}
+
+.personal-information-grid .birthdate {
+    grid-column: 5 / 7;
+}
+
+.personal-information-grid .foreign-passport {
+    grid-column: 7 / 9;
+}
+
+.personal-information-grid .religion {
+    grid-column: 1 / 4;
+}
+
+.personal-information-grid .citizenship {
+    grid-column: 4 / 7;
+}
+
 .family-grid .first-name {
     grid-column: 1 / 4;
 }
