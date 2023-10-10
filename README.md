@@ -9,8 +9,8 @@
 -   [ ] Personal information page
     -   [ ] Add birthdate validation
     -   [ ] Add password validation
-    -   [ ] Fix blank select inputs
-    -   [ ] Save inputs to session storage
+    -   [x] Fix blank select inputs
+    -   [x] Save inputs to session storage
 
 # Notes
 
