@@ -122,12 +122,18 @@ main {
     transform: translateY(0);
 }
 
-.input-container.error .input {
+.input-container.error .input,
+.input-container.error .select {
     border: 1px solid var(--warning);
     color: var(--warning);
 }
 
-.input-container .input {
+.input-container.error .input::placeholder {
+    color: var(--warning);
+}
+
+.input-container .input,
+.input-container .select {
     background-color: var(--inactive-background);
     border: 1px solid var(--border);
     border-radius: 0.5rem;
