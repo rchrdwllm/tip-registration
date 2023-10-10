@@ -34,7 +34,8 @@ span {
 }
 
 input,
-button {
+button,
+select {
     display: block;
     background-color: transparent;
     font-size: inherit;
