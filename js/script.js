@@ -123,7 +123,6 @@ barba.init({
 
                     return;
                 }
-
                 stepHeader.textContent = 'Step 1';
 
                 updateLink(data.next.namespace);
@@ -294,8 +293,6 @@ function wrapInputs(container) {
         wrapper.appendChild(clone);
 
         el.parentElement.replaceChild(wrapper, el);
-
-        console.log(el);
     });
 }
 
