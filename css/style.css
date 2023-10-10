@@ -9,7 +9,7 @@
 
 aside {
     background-color: var(--accent);
-    padding: 2rem 4rem;
+    padding: 4rem;
     display: none;
     position: relative;
     z-index: 1;
@@ -67,7 +67,7 @@ main {
 }
 
 .registration-body .container {
-    padding: 2rem 4rem;
+    padding: 4rem;
     max-height: 100vh;
     overflow-y: auto;
 }
