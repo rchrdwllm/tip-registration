@@ -169,6 +169,12 @@ barba.init({
         {
             namespace: 'address-and-contact',
             beforeEnter(data) {
+                const personalInfo = JSON.parse(sessionStorage.getItem('personal-information'));
+
+                if (!personalInfo || Object.values(personalInfo).every(value => !value)) {
+                    barba.go('/registration/personal-information');
+                }
+
                 if (!document.body.classList.contains('registration-home')) {
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
@@ -209,6 +215,12 @@ barba.init({
         {
             namespace: 'family',
             beforeEnter(data) {
+                const addressContactInputs = JSON.parse(sessionStorage.getItem('address-and-contact'));
+
+                if (!addressContactInputs || Object.values(addressContactInputs).every(value => !value)) {
+                    barba.go('/registration/address-and-contact');
+                }
+
                 if (!document.body.classList.contains('registration-home')) {
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
@@ -259,6 +271,15 @@ barba.init({
         {
             namespace: 'education',
             beforeEnter(data) {
+                const { fatherInputs, motherInputs } = JSON.parse(sessionStorage.getItem('family'));
+
+                if (
+                    Object.values(fatherInputs).every(value => !value) ||
+                    Object.values(motherInputs).every(value => !value)
+                ) {
+                    barba.go('/registration/family');
+                }
+
                 if (!document.body.classList.contains('registration-home')) {
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
@@ -299,6 +320,12 @@ barba.init({
         {
             namespace: 'confirmation',
             beforeEnter(data) {
+                const educationInputs = JSON.parse(sessionStorage.getItem('education'));
+
+                if (!educationInputs || Object.values(educationInputs).every(value => !value)) {
+                    barba.go('/registration/education');
+                }
+
                 updateLink(data.next.namespace);
 
                 stepHeader.textContent = 'Step 5';
