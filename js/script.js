@@ -414,12 +414,6 @@ function retrieveInputs(namespace) {
             document.querySelector(`.mother input[name="${input}"]`).value = motherInputs[input];
         });
     } else {
-        // Object.keys(inputs).forEach(input => {
-        //     // console.log(document.querySelector(`select[name="${input}"]`));
-        //     // document.querySelector(`input[name="${input}"]`).value = inputs[input];
-        //     console.log(input);
-        //     document.querySelector(`select[name="${input}"]`).value = inputs[input];
-        // });
         const inputsArr = Object.keys(inputs);
 
         document.querySelectorAll('input').forEach(el => {
@@ -429,13 +423,6 @@ function retrieveInputs(namespace) {
         document.querySelectorAll('select').forEach(select => {
             select.value = inputs[inputsArr.find(input => input === select.name)];
         });
-        // Object.keys(inputs).forEach(input => {
-        //     console.log(input);
-        //     document.querySelector(`input[name="${input}"]`).value = inputs[input];
-        //     document.querySelector(`select[name="${input}"]`).value = inputs[input];
-
-        //     console.log(input);
-        // });
     }
 }
 
