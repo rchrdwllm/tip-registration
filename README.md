@@ -3,10 +3,14 @@
 (So far na mga napansin q)
 
 -   [x] Email inputs accept any string input (must be "@" followed by domain)
--   [ ] Wait yung steps 1 and 2 from Micha then ipag-connect ang everything
 -   [ ] Fix cases na 'di ina-accept ng email inputs:
     -   [ ] Pag may "\_" ('di accepted yung example_asdf@gmail.com)
     -   [ ] Pag walang "." ('di accepted yung example@gmail.com)
+-   [ ] Personal information page
+    -   [ ] Add birthdate validation
+    -   [ ] Add password validation
+    -   [ ] Fix blank select inputs
+    -   [ ] Save inputs to session storage
 
 # Notes
 
