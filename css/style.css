@@ -84,6 +84,10 @@ main {
     margin-top: 2rem;
 }
 
+.address-and-contact-info {
+    margin-top: 2rem;
+}
+
 .container > h3 {
     margin-top: 3rem;
 }
@@ -155,6 +159,10 @@ main {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 1rem;
+}
+
+.address-and-contact-grid {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .personal-information-grid .first-name {

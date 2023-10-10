@@ -25,10 +25,10 @@ barba.init({
                 });
             },
             from: {
-                namespace: ['personal-information', 'family', 'education', 'confirmation'],
+                namespace: ['personal-information', 'address-and-contact', 'family', 'education', 'confirmation'],
             },
             to: {
-                namespace: ['personal-information', 'family', 'education', 'confirmation'],
+                namespace: ['personal-information', 'address-and-contact', 'family', 'education', 'confirmation'],
             },
         },
         {
@@ -60,7 +60,7 @@ barba.init({
                 namespace: ['home'],
             },
             to: {
-                namespace: ['personal-information', 'family', 'education', 'confirmation'],
+                namespace: ['personal-information', 'address-and-contact', 'family', 'education', 'confirmation'],
             },
         },
         {
@@ -89,7 +89,7 @@ barba.init({
                 });
             },
             from: {
-                namespace: ['confirmation', 'family', 'education', 'personal-information'],
+                namespace: ['personal-information', 'address-and-contact', 'family', 'education', 'confirmation'],
             },
             to: {
                 namespace: ['home'],
@@ -138,11 +138,51 @@ barba.init({
 
                 submitBtn.addEventListener('click', () => {
                     if (validateInputs()) {
-                        barba.go('/registration/family');
+                        barba.go('/registration/address-and-contact');
                     }
                 });
                 backBtn.addEventListener('click', () => {
                     barba.go('/');
+                });
+            },
+        },
+        {
+            namespace: 'address-and-contact',
+            beforeEnter(data) {
+                if (!document.body.classList.contains('registration-home')) {
+                    document.body.classList.add('registration-body');
+                    document.body.classList.remove('home-body');
+                    sidebar.classList.add('active');
+
+                    stepHeader.textContent = 'Step 2';
+
+                    updateLink(data.next.namespace);
+                    retrieveInputs(data.next.namespace);
+
+                    return;
+                }
+
+                stepHeader.textContent = 'Step 2';
+
+                updateLink(data.next.namespace);
+                retrieveInputs(data.next.namespace);
+            },
+            beforeLeave(data) {
+                const inputs = saveInputs(data.current.container);
+
+                sessionStorage.setItem('address-and-contact', JSON.stringify({ ...inputs }));
+            },
+            afterEnter(data) {
+                const submitBtn = data.next.container.querySelector('.submit-btn');
+                const backBtn = data.next.container.querySelector('.back-btn');
+
+                submitBtn.addEventListener('click', () => {
+                    if (validateInputs()) {
+                        barba.go('/registration/family');
+                    }
+                });
+                backBtn.addEventListener('click', () => {
+                    barba.go('/registration/personal-information');
                 });
             },
         },
@@ -192,7 +232,7 @@ barba.init({
                     }
                 });
                 backBtn.addEventListener('click', () => {
-                    barba.go('/registration/personal-information');
+                    barba.go('/registration/address-and-contact');
                 });
             },
         },
@@ -414,12 +454,6 @@ function retrieveInputs(namespace) {
             document.querySelector(`.mother input[name="${input}"]`).value = motherInputs[input];
         });
     } else {
-        // Object.keys(inputs).forEach(input => {
-        //     // console.log(document.querySelector(`select[name="${input}"]`));
-        //     // document.querySelector(`input[name="${input}"]`).value = inputs[input];
-        //     console.log(input);
-        //     document.querySelector(`select[name="${input}"]`).value = inputs[input];
-        // });
         const inputsArr = Object.keys(inputs);
 
         document.querySelectorAll('input').forEach(el => {
@@ -429,13 +463,6 @@ function retrieveInputs(namespace) {
         document.querySelectorAll('select').forEach(select => {
             select.value = inputs[inputsArr.find(input => input === select.name)];
         });
-        // Object.keys(inputs).forEach(input => {
-        //     console.log(input);
-        //     document.querySelector(`input[name="${input}"]`).value = inputs[input];
-        //     document.querySelector(`select[name="${input}"]`).value = inputs[input];
-
-        //     console.log(input);
-        // });
     }
 }
 

@@ -11,6 +11,10 @@
     -   [ ] Add password validation
     -   [x] Fix blank select inputs
     -   [x] Save inputs to session storage
+-   [ ] Address and contact page
+    -   [x] Fix layout
+    -   [x] Save inputs to session storage
+    -   [ ] Gawing optional yung telephone number pero may validation na digits only dapat if ever na nag-input ang user
 
 # Notes
 
