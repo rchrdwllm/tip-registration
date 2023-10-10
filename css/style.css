@@ -144,44 +144,44 @@ main {
     color: var(--text);
 }
 
-.first-name {
+.family-grid .first-name {
     grid-column: 1 / 4;
 }
 
-.middle-name {
+.family-grid .middle-name {
     grid-column: 4 / 7;
 }
 
-.last-name {
+.family-grid .last-name {
     grid-column: 1 / 4;
 }
 
-.suffix {
+.family-grid .suffix {
     grid-column: 4 / 7;
 }
 
-.email {
+.family-grid .email {
     grid-column: 1 / 4;
 }
 
-.contact-number {
+.family-grid .contact-number {
     grid-column: 4 / 7;
 }
 
-.shs-name {
+.education-grid .shs-name {
     grid-column: 1 / 5;
 }
 
-.year-graduated {
+.education-grid .year-graduated {
     grid-column: 5 / 7;
 }
 
-.shs-address {
+.education-grid .shs-address {
     grid-column: 1 / 7;
 }
 
-.first-school,
-.second-school {
+.education-grid .first-school,
+.education-grid .second-school {
     grid-column: 1 / 7;
 }
 
