@@ -268,7 +268,6 @@ function wrapInputs(container) {
  * @returns {boolean} whether the input tag is valid or not.
  */
 function validateInput(input) {
-    console.log(input);
     const keys = Object.keys(input.dataset);
     const regex = /(?:regex|hint)-(\d)/;
     const indices = new Set();
