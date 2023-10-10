@@ -11,6 +11,9 @@
     -   [ ] Add password validation
     -   [x] Fix blank select inputs
     -   [x] Save inputs to session storage
+-   [ ] Address and contact page
+    -   [ ] Fix layout
+    -   [ ] Save inputs to session storage
 
 # Notes
 
