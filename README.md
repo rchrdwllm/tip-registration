@@ -11,3 +11,4 @@
 # Notes
 
 -   May schools ba na may number sa name nila? If yes, i-allow na lang natin numbers sa top 2 schools input sa education part step 4
+-   May regex ba para like limit yung year graduated hanggang 2023 lang? Like if 2024 yung ilagay, 'di ia-accept kasi wala pa naman tayo sa 2024
