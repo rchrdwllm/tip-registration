@@ -112,7 +112,7 @@
                         />
                     </div>
                     <div class="password">
-                        <input class="input" type="password" id="password" placeholder="Password" />
+                        <input class="input" name="password" type="password" id="password" placeholder="Password" />
                     </div>
                     <div class="year-level">
                         <select
@@ -240,17 +240,18 @@
                                 type="text"
                                 placeholder="Birthplace"
                                 id="Birthplace"
+                                name="birthplace"
                             />
                         </div>
                         <div class="birthdate">
-                            <input class="input" type="text" placeholder="Birthdate" id="Birthdate" />
+                            <input class="input" name="birthdate" type="text" placeholder="Birthdate" id="Birthdate" />
                         </div>
                         <div class="foreign-passport">
                             <select
                                 data-regex-0="^.+$"
                                 data-hint-0="Foreign passport holder must not be empty"
                                 class="select"
-                                name="ForeignPassport"
+                                name="foreignPassport"
                                 id="ForeignPassport"
                             >
                                 <option value="" disabled selected hidden>Foreign passport holder</option>
