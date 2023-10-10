@@ -115,8 +115,14 @@
                         <input class="input" type="password" id="password" placeholder="Password" />
                     </div>
                     <div class="year-level">
-                        <select class="input" name="year" id="yearLevel">
-                            <option value="" disabled selected>Year level</option>
+                        <select
+                            data-regex-0="^.+$"
+                            data-hint-0="Year level must not be empty"
+                            class="select"
+                            name="year"
+                            id="yearLevel"
+                        >
+                            <option value="" disabled selected hidden>Year level</option>
                             <option value="1st">1st year</option>
                             <option value="2nd">2nd year</option>
                             <option value="3rd">3rd year</option>
@@ -125,7 +131,13 @@
                         </select>
                     </div>
                     <div class="student-type">
-                        <select class="input" name="studType" id="studType">
+                        <select
+                            data-regex-0="^.+$"
+                            data-hint-0="Student type must not be empty"
+                            class="select"
+                            name="studType"
+                            id="studType"
+                        >
                             <option value="" disabled selected hidden>Student type</option>
                             <option value="Transferee">Transferee</option>
                             <option value="New Student">New Student</option>
@@ -133,7 +145,13 @@
                         </select>
                     </div>
                     <div class="school-year">
-                        <select class="input" name="schoolYear" id="schoolYear">
+                        <select
+                            data-regex-0="^.+$"
+                            data-hint-0="School year must not be empty"
+                            class="select"
+                            name="schoolYear"
+                            id="schoolYear"
+                        >
                             <option value="" disabled selected hidden>School year and semester</option>
                             <option value="2023, 1st sem">2023, 1st sem</option>
                             <option value="2023, 2nd sem">2023, 2nd sem</option>
@@ -147,9 +165,15 @@
                     </div>
                     <div class="subgrid">
                         <div class="program">
-                            <select class="input" name="program" id="Program">
+                            <select
+                                data-regex-0="^.+$"
+                                data-hint-0="Program must not be empty"
+                                class="select"
+                                name="program"
+                                id="Program"
+                            >
                                 <option value="" disabled selected hidden>Program</option>
-                                <option value="2023">Architecture</option>
+                                <option value="Arch">Architecture</option>
                                 <option value="CE">Civil Engineering</option>
                                 <option value="CPE">Computer Engineering</option>
                                 <option value="EE">Electrical Engineering</option>
@@ -178,14 +202,27 @@
                             </select>
                         </div>
                         <div class="gender">
-                            <select class="input" name="gender" id="gender">
+                            <select
+                                data-regex-0="^.+$"
+                                data-hint-0="Gender must not be empty"
+                                class="select"
+                                name="gender"
+                                id="gender"
+                            >
                                 <option value="" disabled selected hidden>Gender</option>
                                 <option value="Female">Female</option>
                                 <option value="Male">Male</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
                             </select>
                         </div>
                         <div class="civil-status">
-                            <select class="input" name="civilStatus" id="civilStatus">
+                            <select
+                                data-regex-0="^.+$"
+                                data-hint-0="Civil status must not be empty"
+                                class="select"
+                                name="civilStatus"
+                                id="civilStatus"
+                            >
                                 <option value="" disabled selected hidden>Civil status</option>
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
@@ -209,7 +246,13 @@
                             <input class="input" type="text" placeholder="Birthdate" id="Birthdate" />
                         </div>
                         <div class="foreign-passport">
-                            <select class="input" name="ForeignPassport" id="ForeignPassport">
+                            <select
+                                data-regex-0="^.+$"
+                                data-hint-0="Foreign passport holder must not be empty"
+                                class="select"
+                                name="ForeignPassport"
+                                id="ForeignPassport"
+                            >
                                 <option value="" disabled selected hidden>Foreign passport holder</option>
                                 <option value="Tourist">Tourist</option>
                                 <option value="InternationalStudent">International Student</option>
@@ -219,7 +262,13 @@
                         </div>
                     </div>
                     <div class="religion">
-                        <select class="input" name="religion" id="religion">
+                        <select
+                            data-regex-0="^.+$"
+                            data-hint-0="Religion must not be empty"
+                            class="select"
+                            name="religion"
+                            id="religion"
+                        >
                             <option value="" disabled selected hidden>Religion</option>
                             <option value="2023">Roman Catholic</option>
                             <option value="2022">Iglesia ni Cristo</option>
@@ -230,7 +279,13 @@
                         </select>
                     </div>
                     <div class="citizenship">
-                        <select class="input" name="citizenship" id="citizenship">
+                        <select
+                            data-regex-0="^.+$"
+                            data-hint-0="Citizenship must not be empty"
+                            class="select"
+                            name="citizenship"
+                            id="citizenship"
+                        >
                             <option value="" disabled selected hidden>Citizenship</option>
                             <option value="Natural-born">Natural - born Filipino citizen</option>
                             <option value="Naturalized">Naturalized Filipino citizen</option>
