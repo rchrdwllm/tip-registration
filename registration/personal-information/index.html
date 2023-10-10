@@ -52,7 +52,7 @@
             <div class="container" data-barba="container" data-barba-namespace="personal-information">
                 <header>
                     <img src="/assets/logo.png" alt="logo" />
-                    <h1>Your family information</h1>
+                    <h1>Your personal information</h1>
                 </header>
                 <div class="grid personal-information-grid">
                     <div class="first-name">
@@ -112,7 +112,15 @@
                         />
                     </div>
                     <div class="password">
-                        <input class="input" name="password" type="password" id="password" placeholder="Password" />
+                        <input
+                            class="input"
+                            name="password"
+                            data-regex-0="^.+$"
+                            data-hint-0="Password must not be empty"
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                        />
                     </div>
                     <div class="year-level">
                         <select
