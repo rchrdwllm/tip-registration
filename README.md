@@ -4,10 +4,9 @@
 
 -   [x] Email inputs accept any string input (must be "@" followed by domain)
 -   [ ] Wait yung steps 1 and 2 from Micha then ipag-connect ang everything
--   [ ] 'Di inaaccept ng email inputs pag walang . sa username
-    -   Not accepted: asdf@gmail.com
-    -   Accepted: as.df@gmail.com
-    -   Dapat accepted parehas
+-   [ ] Fix cases na 'di ina-accept ng email inputs:
+    -   [ ] Pag may "\_" ('di accepted yung example_asdf@gmail.com)
+    -   [ ] Pag walang "." ('di accepted yung example@gmail.com)
 
 # Notes
 
