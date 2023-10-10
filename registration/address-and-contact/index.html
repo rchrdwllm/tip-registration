@@ -73,7 +73,7 @@
                                 name="block-no"
                                 id="BlkNo"
                                 placeholder="House/Lot & Blk No."
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="House/Lot and block no. must not be empty"
                             />
                         </div>
@@ -84,7 +84,7 @@
                                 name="street-name"
                                 id="StreetName"
                                 placeholder="Street name"
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Street name must not be empty"
                             />
                         </div>
@@ -104,7 +104,7 @@
                                 name="barangay"
                                 id="brgy"
                                 placeholder="Barangay/District/Locality"
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Barangay must not be empty"
                             />
                         </div>
@@ -115,7 +115,7 @@
                                 name="municipality"
                                 id="mnclty"
                                 placeholder="City municipality"
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="City municipality must not be empty"
                             />
                         </div>
@@ -126,7 +126,7 @@
                                 name="province"
                                 id="Prvnc"
                                 placeholder="Province"
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Province must not be empty"
                             />
                         </div>
@@ -137,7 +137,7 @@
                                 name="country"
                                 id="Country"
                                 placeholder="Country"
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Country must not be empty"
                             />
                         </div>
@@ -148,7 +148,7 @@
                                 name="zip-code"
                                 id="zip"
                                 placeholder="Zip code"
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Zip code must not be empty"
                             />
                         </div>
@@ -164,7 +164,7 @@
                                 name="contact-no"
                                 id="mobile"
                                 placeholder="Mobile/Cellphone number"
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Mobile/Cellphone number must not be empty"
                                 data-regex-1="^[\d\s]+$"
                                 data-hint-1="Mobile/Cellphone number must be digits only"
@@ -177,9 +177,9 @@
                                 name="email"
                                 id="email"
                                 placeholder="Email address"
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Email address must not be empty"
-                                data-regex-1="^\w+(\.\w+)+@\w+(\.\w+)+$"
+                                data-regex-1=":email"
                                 data-hint-1="Email address must be valid"
                             />
                         </div>
@@ -190,7 +190,7 @@
                                 name="tel-no"
                                 id="tel"
                                 placeholder="Telephone number (Optional)"
-                                data-regex-0="^[\d\s]+$"
+                                data-regex-0="^[\d\s]*$"
                                 data-hint-0="Telephone number must be digits only"
                             />
                         </div>

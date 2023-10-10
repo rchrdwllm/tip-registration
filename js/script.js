@@ -219,7 +219,7 @@ barba.init({
                     JSON.stringify({
                         fatherInputs,
                         motherInputs,
-                    })
+                    }),
                 );
             },
             afterEnter(data) {
@@ -357,6 +357,11 @@ function wrapInputs(container) {
  * @returns {boolean} whether the input tag is valid or not.
  */
 function validateInput(input) {
+    const templates = {
+        ':email': /^[\w_\$]+(\.[\w_\$]+)*@[\w_\$]+(\.[\w_\$]+)+$/gi,
+        ':non-empty': /\S+/gi,
+    };
+
     const keys = Object.keys(input.dataset);
     const regex = /(?:regex|hint)-(\d)/;
     const indices = new Set();
@@ -371,7 +376,12 @@ function validateInput(input) {
 
     let hasFailed = false;
     for (const index of indices) {
-        const regexp = new RegExp(input.dataset[`regex-${index}`], 'gi');
+        const regexKey = input.dataset[`regex-${index}`];
+        const regexp = Object.prototype.hasOwnProperty.call(templates, regexKey)
+            ? templates[regexKey]
+            : new RegExp(regexKey, 'gi');
+        console.log(Object.prototype.hasOwnProperty.call(templates, regexKey));
+
         const hint = input.dataset[`hint-${index}`];
 
         const succeeds = regexp.test(input.value);

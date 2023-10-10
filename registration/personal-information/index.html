@@ -63,7 +63,7 @@
                             name="firstName"
                             data-regex-0="^[^\d]*$"
                             data-hint-0="First name must not include any number"
-                            data-regex-1="^.+$"
+                            data-regex-1=":non-empty"
                             data-hint-1="First name must not be empty"
                         />
                     </div>
@@ -85,7 +85,7 @@
                             name="lastName"
                             data-regex-0="^[^\d]*$"
                             data-hint-0="Last name must not include any number"
-                            data-regex-1="^.+$"
+                            data-regex-1=":non-empty"
                             data-hint-1="Last name must not be empty"
                         />
                     </div>
@@ -105,9 +105,9 @@
                             type="email"
                             name="email"
                             placeholder="Email address"
-                            data-regex-0="^.+$"
+                            data-regex-0=":non-empty"
                             data-hint-0="Email address must not be empty"
-                            data-regex-1="^\w+(\.\w+)+@\w+(\.\w+)+$"
+                            data-regex-1=":email"
                             data-hint-1="Email address must be valid"
                         />
                     </div>
@@ -115,8 +115,9 @@
                         <input
                             class="input"
                             name="password"
-                            data-regex-0="^.+$"
+                            data-regex-0=":non-empty"
                             data-hint-0="Password must not be empty"
+                            data-regex-1=""
                             type="password"
                             id="password"
                             placeholder="Password"
@@ -124,7 +125,7 @@
                     </div>
                     <div class="year-level">
                         <select
-                            data-regex-0="^.+$"
+                            data-regex-0=":non-empty"
                             data-hint-0="Year level must have a value"
                             class="select"
                             name="year"
@@ -140,7 +141,7 @@
                     </div>
                     <div class="student-type">
                         <select
-                            data-regex-0="^.+$"
+                            data-regex-0=":non-empty"
                             data-hint-0="Student type must have a value"
                             class="select"
                             name="studType"
@@ -154,7 +155,7 @@
                     </div>
                     <div class="school-year">
                         <select
-                            data-regex-0="^.+$"
+                            data-regex-0=":non-empty"
                             data-hint-0="School year must have a value"
                             class="select"
                             name="schoolYear"
@@ -174,7 +175,7 @@
                     <div class="subgrid">
                         <div class="program">
                             <select
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Program must have a value"
                                 class="select"
                                 name="program"
@@ -211,7 +212,7 @@
                         </div>
                         <div class="gender">
                             <select
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Gender must have a value"
                                 class="select"
                                 name="gender"
@@ -225,7 +226,7 @@
                         </div>
                         <div class="civil-status">
                             <select
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Civil status must have a value"
                                 class="select"
                                 name="civilStatus"
@@ -243,7 +244,7 @@
                         <div class="birthplace">
                             <input
                                 class="input"
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Last name must not be empty"
                                 type="text"
                                 placeholder="Birthplace"
@@ -252,11 +253,11 @@
                             />
                         </div>
                         <div class="birthdate">
-                            <input class="input" name="birthdate" type="text" placeholder="Birthdate" id="Birthdate" />
+                            <input class="input" name="birthdate" type="date" placeholder="Birth Date" id="Birthdate" />
                         </div>
                         <div class="foreign-passport">
                             <select
-                                data-regex-0="^.+$"
+                                data-regex-0=":non-empty"
                                 data-hint-0="Foreign passport holder must have a value"
                                 class="select"
                                 name="foreignPassport"
@@ -272,7 +273,7 @@
                     </div>
                     <div class="religion">
                         <select
-                            data-regex-0="^.+$"
+                            data-regex-0=":non-empty"
                             data-hint-0="Religion must have a value"
                             class="select"
                             name="religion"
@@ -289,7 +290,7 @@
                     </div>
                     <div class="citizenship">
                         <select
-                            data-regex-0="^.+$"
+                            data-regex-0=":non-empty"
                             data-hint-0="Citizenship must have a value"
                             class="select"
                             name="citizenship"
