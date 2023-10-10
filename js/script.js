@@ -89,7 +89,7 @@ barba.init({
                 });
             },
             from: {
-                namespace: ['confirmation', 'family', 'education'],
+                namespace: ['confirmation', 'family', 'education', 'personal-information'],
             },
             to: {
                 namespace: ['home'],
@@ -111,7 +111,7 @@ barba.init({
         {
             namespace: 'personal-information',
             beforeEnter(data) {
-                if (!document.body.classList.contains('home-body')) {
+                if (!document.body.classList.contains('registration-home')) {
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
                     sidebar.classList.add('active');
@@ -146,7 +146,7 @@ barba.init({
         {
             namespace: 'family',
             beforeEnter(data) {
-                if (!document.body.classList.contains('home-body')) {
+                if (!document.body.classList.contains('registration-home')) {
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
                     sidebar.classList.add('active');
@@ -196,7 +196,7 @@ barba.init({
         {
             namespace: 'education',
             beforeEnter(data) {
-                if (!document.body.classList.contains('home-body')) {
+                if (!document.body.classList.contains('registration-home')) {
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
                     sidebar.classList.add('active');
@@ -294,6 +294,8 @@ function wrapInputs(container) {
         wrapper.appendChild(clone);
 
         el.parentElement.replaceChild(wrapper, el);
+
+        console.log(el);
     });
 }
 
