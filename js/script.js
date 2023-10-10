@@ -115,18 +115,22 @@ barba.init({
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
                     sidebar.classList.add('active');
-
-                    stepHeader.textContent = 'Step 1';
-
                     updateLink(data.next.namespace);
+                    stepHeader.textContent = 'Step 1';
                     retrieveInputs(data.next.namespace);
 
                     return;
                 }
+
                 stepHeader.textContent = 'Step 1';
 
                 updateLink(data.next.namespace);
                 retrieveInputs(data.next.namespace);
+            },
+            beforeLeave(data) {
+                const inputs = saveInputs(data.current.container);
+
+                sessionStorage.setItem('personal-information', JSON.stringify({ ...inputs }));
             },
             afterEnter(data) {
                 const submitBtn = data.next.container.querySelector('.submit-btn');
@@ -389,6 +393,9 @@ function saveInputs(container) {
     container.querySelectorAll('.input').forEach(input => {
         item[input.name] = input.value;
     });
+    container.querySelectorAll('.select').forEach(select => {
+        item[select.name] = select.value;
+    });
 
     return item;
 }
@@ -407,9 +414,28 @@ function retrieveInputs(namespace) {
             document.querySelector(`.mother input[name="${input}"]`).value = motherInputs[input];
         });
     } else {
-        Object.keys(inputs).forEach(input => {
-            document.querySelector(`input[name="${input}"]`).value = inputs[input];
+        // Object.keys(inputs).forEach(input => {
+        //     // console.log(document.querySelector(`select[name="${input}"]`));
+        //     // document.querySelector(`input[name="${input}"]`).value = inputs[input];
+        //     console.log(input);
+        //     document.querySelector(`select[name="${input}"]`).value = inputs[input];
+        // });
+        const inputsArr = Object.keys(inputs);
+
+        document.querySelectorAll('input').forEach(el => {
+            el.value = inputs[inputsArr.find(input => input === el.name)];
         });
+
+        document.querySelectorAll('select').forEach(select => {
+            select.value = inputs[inputsArr.find(input => input === select.name)];
+        });
+        // Object.keys(inputs).forEach(input => {
+        //     console.log(input);
+        //     document.querySelector(`input[name="${input}"]`).value = inputs[input];
+        //     document.querySelector(`select[name="${input}"]`).value = inputs[input];
+
+        //     console.log(input);
+        // });
     }
 }
 
