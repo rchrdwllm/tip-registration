@@ -54,22 +54,69 @@
                     <img src="/assets/logo.png" alt="logo" />
                     <h1>Your family information</h1>
                 </header>
-                <div class="grid persona-information-grid">
+                <div class="grid personal-information-grid">
                     <div class="first-name">
-                        <input class="input" type="text" id="Fname" placeholder="First name" />
+                        <input
+                            class="input"
+                            type="text"
+                            placeholder="First name"
+                            name="firstName"
+                            data-regex-0="^[^\d]*$"
+                            data-hint-0="First name must not include any number"
+                            data-regex-1="^.+$"
+                            data-hint-1="First name must not be empty"
+                        />
                     </div>
                     <div class="middle-name">
-                        <input class="input" type="text" id="Mname" placeholder="Middle name (Optional)" />
+                        <input
+                            class="input"
+                            type="text"
+                            name="middleName"
+                            placeholder="Middle name (Optional)"
+                            data-regex-0="^[^\d]*$"
+                            data-hint-0="Middle name must not include any number"
+                        />
                     </div>
                     <div class="last-name">
-                        <input class="input" type="text" id="Lname" placeholder="Last name" />
+                        <input
+                            class="input"
+                            type="text"
+                            placeholder="Last name"
+                            name="lastName"
+                            data-regex-0="^[^\d]*$"
+                            data-hint-0="Last name must not include any number"
+                            data-regex-1="^.+$"
+                            data-hint-1="Last name must not be empty"
+                        />
+                    </div>
+                    <div class="suffix">
+                        <input
+                            class="input"
+                            type="text"
+                            placeholder="Suffix (Optional)"
+                            name="suffix"
+                            data-regex-0="^[^\d]*$"
+                            data-hint-0="Suffix must not include any number"
+                        />
                     </div>
                     <div class="email">
-                        <input class="input" type="email" id="email" placeholder="Email address" />
+                        <input
+                            class="input"
+                            type="email"
+                            name="email"
+                            placeholder="Email address"
+                            data-regex-0="^.+$"
+                            data-hint-0="Email address must not be empty"
+                            data-regex-1="^\w+(\.\w+)+@\w+(\.\w+)+$"
+                            data-hint-1="Email address must be valid"
+                        />
+                    </div>
+                    <div class="password">
+                        <input class="input" type="password" id="password" placeholder="Password" />
                     </div>
                     <div class="year-level">
                         <select class="input" name="year" id="yearLevel">
-                            <option value="" disabled selected hidden>Year level</option>
+                            <option value="" disabled selected>Year level</option>
                             <option value="1st">1st year</option>
                             <option value="2nd">2nd year</option>
                             <option value="3rd">3rd year</option>
@@ -98,67 +145,78 @@
                             <option value="2020, 2nd sem">2020, 2nd sem</option>
                         </select>
                     </div>
-                    <div class="program">
-                        <select class="input" name="program" id="Program">
-                            <option value="" disabled selected hidden>Program</option>
-                            <option value="2023">Architecture</option>
-                            <option value="CE">Civil Engineering</option>
-                            <option value="CPE">Computer Engineering</option>
-                            <option value="EE">Electrical Engineering</option>
-                            <option value="ECE">Electronics Engineering</option>
-                            <option value="ENSE">Environmental and Sanitary Engineering</option>
-                            <option value="IE">Industrial Engineering</option>
-                            <option value="ME">Mechanical Engineering</option>
-                            <option value="BSMath">Bachelor of Science in Mathematics</option>
-                            <option value="CS">Computer Science</option>
-                            <option value="DS">Data Science and Analytics</option>
-                            <option value="IS">Information Systems</option>
-                            <option value="IT">Information Technology</option>
-                            <option value="Acc">Accountancy</option>
-                            <option value="AIS">Accounting Information Systems</option>
-                            <option value="BA">Business Administration</option>
-                            <option value="FM">Financial Management</option>
-                            <option value="HRM">Human Resource Management</option>
-                            <option value="LSM">Logistics and Supply Management</option>
-                            <option value="MM">Marketing Management</option>
-                            <option value="BSinEng">Bachelor of Secondary Education Major in English</option>
-                            <option value="BSinMath">Bachelor of Secondary Education Major in Mathematics</option>
-                            <option value="BSinSci">Bachelor of Secondary Education Major in Sciences</option>
-                            <option value="BSinEduc">Bachelor of Special Needs Education</option>
-                            <option value="BAEL">Bachelor of Arts in English Language</option>
-                            <option value="BAPS">Bachelor of Arts in Political Science</option>
-                        </select>
+                    <div class="subgrid">
+                        <div class="program">
+                            <select class="input" name="program" id="Program">
+                                <option value="" disabled selected hidden>Program</option>
+                                <option value="2023">Architecture</option>
+                                <option value="CE">Civil Engineering</option>
+                                <option value="CPE">Computer Engineering</option>
+                                <option value="EE">Electrical Engineering</option>
+                                <option value="ECE">Electronics Engineering</option>
+                                <option value="ENSE">Environmental and Sanitary Engineering</option>
+                                <option value="IE">Industrial Engineering</option>
+                                <option value="ME">Mechanical Engineering</option>
+                                <option value="BSMath">Bachelor of Science in Mathematics</option>
+                                <option value="CS">Computer Science</option>
+                                <option value="DS">Data Science and Analytics</option>
+                                <option value="IS">Information Systems</option>
+                                <option value="IT">Information Technology</option>
+                                <option value="Acc">Accountancy</option>
+                                <option value="AIS">Accounting Information Systems</option>
+                                <option value="BA">Business Administration</option>
+                                <option value="FM">Financial Management</option>
+                                <option value="HRM">Human Resource Management</option>
+                                <option value="LSM">Logistics and Supply Management</option>
+                                <option value="MM">Marketing Management</option>
+                                <option value="BSinEng">Bachelor of Secondary Education Major in English</option>
+                                <option value="BSinMath">Bachelor of Secondary Education Major in Mathematics</option>
+                                <option value="BSinSci">Bachelor of Secondary Education Major in Sciences</option>
+                                <option value="BSinEduc">Bachelor of Special Needs Education</option>
+                                <option value="BAEL">Bachelor of Arts in English Language</option>
+                                <option value="BAPS">Bachelor of Arts in Political Science</option>
+                            </select>
+                        </div>
+                        <div class="gender">
+                            <select class="input" name="gender" id="gender">
+                                <option value="" disabled selected hidden>Gender</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
+                        </div>
+                        <div class="civil-status">
+                            <select class="input" name="civilStatus" id="civilStatus">
+                                <option value="" disabled selected hidden>Civil status</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Separated">Separated</option>
+                                <option value="Divorced">Divorced</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="gender">
-                        <select class="input" name="gender" id="gender">
-                            <option value="" disabled selected hidden>Gender</option>
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                        </select>
-                    </div>
-                    <div class="civil-status">
-                        <select class="input" name="civilStatus" id="civilStatus">
-                            <option value="" disabled selected hidden>Civil status</option>
-                            <option value="Single">Single</option>
-                            <option value="Married">Married</option>
-                            <option value="Separated">Separated</option>
-                            <option value="Divorced">Divorced</option>
-                        </select>
-                    </div>
-                    <div class="birthplace">
-                        <input class="input" type="text" placeholder="Birthplace" id="Birthplace" />
-                    </div>
-                    <div class="birthdate">
-                        <input class="input" type="text" placeholder="Birthdate" id="Birthdate" />
-                    </div>
-                    <div class="foreign-passport">
-                        <select class="input" name="ForeignPassport" id="ForeignPassport">
-                            <option value="" disabled selected hidden>Foreign passport holder</option>
-                            <option value="Tourist">Tourist</option>
-                            <option value="InternationalStudent">International Student</option>
-                            <option value="VisaHolder">Visa Holder</option>
-                            <option value="Others">Others</option>
-                        </select>
+                    <div class="subgrid">
+                        <div class="birthplace">
+                            <input
+                                class="input"
+                                data-regex-0="^.+$"
+                                data-hint-0="Last name must not be empty"
+                                type="text"
+                                placeholder="Birthplace"
+                                id="Birthplace"
+                            />
+                        </div>
+                        <div class="birthdate">
+                            <input class="input" type="text" placeholder="Birthdate" id="Birthdate" />
+                        </div>
+                        <div class="foreign-passport">
+                            <select class="input" name="ForeignPassport" id="ForeignPassport">
+                                <option value="" disabled selected hidden>Foreign passport holder</option>
+                                <option value="Tourist">Tourist</option>
+                                <option value="InternationalStudent">International Student</option>
+                                <option value="VisaHolder">Visa Holder</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="religion">
                         <select class="input" name="religion" id="religion">
@@ -181,9 +239,33 @@
                         </select>
                     </div>
                 </div>
-                <nav>
-                    <a href="/PageTwo.html" id="button">ADDRESS AND CONTACT</a>
-                </nav>
+                <footer>
+                    <button class="back-btn">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-6 h-6"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                        <p>Back</p>
+                    </button>
+                    <button class="submit-btn">
+                        <p>Education</p>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </footer>
             </div>
         </main>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
