@@ -294,6 +294,17 @@ function wrapInputs(container) {
 
         el.parentElement.replaceChild(wrapper, el);
     });
+    container.querySelectorAll('.select').forEach(el => {
+        const clone = el.cloneNode(true);
+        const wrapper = document.createElement('div');
+
+        clone.classList.add('select');
+
+        wrapper.classList.add('input-container');
+        wrapper.appendChild(clone);
+
+        el.parentElement.replaceChild(wrapper, el);
+    });
 }
 
 /**
@@ -357,6 +368,19 @@ function addInputValidations(container) {
             validateInput(el);
         });
     });
+    container.querySelectorAll('.select').forEach(el => {
+        let previous = el.value;
+        el.addEventListener('focus', () => {
+            previous = el.value;
+        });
+        el.addEventListener('change', () => {
+            if (previous === el.value) {
+                return;
+            }
+
+            validateInput(el);
+        });
+    });
 }
 
 function saveInputs(container) {
@@ -397,7 +421,7 @@ function loadRandomStudentNumber() {
 }
 
 function validateInputs() {
-    const inputs = [...document.querySelectorAll('.input')];
+    const inputs = [...document.querySelectorAll('.input'), ...document.querySelectorAll('.select')];
     const isValid = inputs //
         .map(input => validateInput(input))
         .reduce((acc, input) => acc && input, true);
