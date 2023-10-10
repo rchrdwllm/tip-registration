@@ -1,149 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Address and Contact</title>
- <style>
-    body {
-            height: 100vh;
-            background: linear-gradient(
-                to right,
-                #FFB507 0%,
-                #FFB507 30%,
-                #F7F7F7 10%,
-                #F7F7F7 100%
-            );
-        }
-        .col1 {
-            float: left;
-            width: 400px;
-        }
-        .col2 {
-            float: left;
-        }
-        h1 {
-            padding-top: 10px;;
-            margin: 30px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-            font-size: 22px;
-        }
-        h2 {
-            padding-top: 20px;;
-            margin: 30px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 28px;
-        }
-        #text {
-            margin: 30px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 12px;
-            
-        }
-        span.circle {
-            color: #F7F7F7;
-            background: black;
-            border-radius: 50%;
-            -moz-border-radius: 50%;
-            -webkit-border-radius: 50%;
-            display: inline-block;
-            font-weight: bold;
-            width: 40px;
-            line-height: 40px;
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        #steps {
-            margin-left: 30px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        img {
-            padding-top: 40px;
-            padding-left: 40px;
-            width: 80px;
-            height: 70px;
-        }
-        h3 {
-            padding-left: 45px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-        }
-        #content {
-          padding-left: 50px;
-        }
-        nav {
-          float: right;
-        }
-        #addrs, #BlkNo, #StreetName, #Subdivision, #brgy, #mnclty, #Prvnc, #Country, #zip, #mobile, #email, #tel  {
-          color: d7d7d7;
-          width: 260px;
-          height: 40px;
-          margin-right: 15px;
-          margin-bottom: 15px;
-          border: 2px #d7d7d7;
-          border-radius: 10px;
-        }
-        a:link {
-          text-decoration: none;
-        }
-        #button {
-          color: black;
-          font-family: Arial, Helvetica, sans-serif;
-          font-weight: bold;
-        }
- </style>
- <body>
-    <div id="container"></div>
-        <div class="col1">
-    <h1>Technological Institute of the <br>Philippines</h1>
-    <h2>Step 2</h2>
-    <p id="text">Enter your personal information so we can know you better!</p>
-    
-    <br>
-            <div class="box">
-                <p id="steps"><span class="circle">1</span> Personal information</p>
-                <p id="steps"><span class="circle">2</span> Address and contact</p>
-                <p id="steps"><span class="circle">3</span> Family</p>
-                <p id="steps"><span class="circle">4</span> Education</p>
-                <p id="steps"><span class="circle">5</span> Confirmation</p>
-            </div>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Technological Institute of the Philippines</title>
+        <link rel="stylesheet" href="/css/globals.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body class="registration-body" data-barba="wrapper">
+        <div class="slider-container">
+            <div class="slider"></div>
         </div>
-        <div class="col2">
-            <img src="T.I.P._Logo.png">
-            <h3>Address</h3>
-
-            <div id="content">
-                <input type="text" id="addrs" placeholder="Rm/Flr/Unit No./Building Name">
-                <input type="text" id="BlkNo" placeholder="House/Lot & Blk No.">
-                <input type="text" id="StreetName" placeholder="Street Name"> <br>
-
-                <input type="text" id="Subdivision" placeholder="Subdivision">
-                <input type="text" id="brgy" placeholder="Barangay/District/Locality.">
-                <input type="text" id="mnclty" placeholder="City Municipality"> <br>
-
-                <input type="text" id="Prvnc" placeholder="Province">
-                <input type="text" id="Country" placeholder="Country">
-                <input type="number" id="zip" placeholder="Zip Code"> <br>
-            
-                <h3>Contact</h3>
-
-                <input type="tel" id="mobile" placeholder="Mobile/Cellphone Number">
-                <input type="email" id="email" placeholder="E-mail Address">
-                <input type="tel" id="tel" placeholder="Telephone Number"> <br>
+        <aside class="active">
+            <h3 class="side-header">Technological Institute of the Philippines</h3>
+            <h1 class="step-header">Step 2</h1>
+            <p>Enter your information so that we can know you better!</p>
+            <div class="step-links">
+                <div class="step-link personal-information" data-namespace="personal-information">
+                    <div class="step-number">
+                        <h2>1</h2>
+                    </div>
+                    <h2>Personal information</h2>
+                </div>
+                <div class="step-link address-and-contact" data-namespace="address-and-contact">
+                    <div class="step-number">
+                        <h2>2</h2>
+                    </div>
+                    <h2>Address and contact</h2>
+                </div>
+                <div class="step-link family" data-namespace="family">
+                    <div class="step-number">
+                        <h2>3</h2>
+                    </div>
+                    <h2>Family</h2>
+                </div>
+                <div class="step-link education" data-namespace="education">
+                    <div class="step-number">
+                        <h2>4</h2>
+                    </div>
+                    <h2>Education</h2>
+                </div>
+                <div class="step-link confirmation" data-namespace="confirmation">
+                    <div class="step-number">
+                        <h2>5</h2>
+                    </div>
+                    <h2>Confirmation</h2>
+                </div>
             </div>
-            <br>
-            <br>
-        <nav>
-            <a href="" id="button">FAMILY</a>
-        </nav>
-   </div>
-   
-</div>
-
-
-</body>
+        </aside>
+        <main>
+            <div class="container" data-barba="container" data-barba-namespace="address-and-contact">
+                <header>
+                    <img src="/assets/logo.png" alt="logo" />
+                    <h1>Your address and contact information</h1>
+                </header>
+                <div class="address-and-contact-info address">
+                    <h3>Address</h3>
+                    <div class="grid address-and-contact-grid">
+                        <div class="address">
+                            <input
+                                class="input"
+                                type="text"
+                                name="address"
+                                id="addrs"
+                                placeholder="Rm/Flr/Unit No./Building name (Optional)"
+                            />
+                        </div>
+                        <div class="block-no">
+                            <input
+                                class="input"
+                                type="text"
+                                name="block-no"
+                                id="BlkNo"
+                                placeholder="House/Lot & Blk No."
+                                data-regex-0="^.+$"
+                                data-hint-0="House/Lot and block no. must not be empty"
+                            />
+                        </div>
+                        <div class="street-name">
+                            <input
+                                class="input"
+                                type="text"
+                                name="street-name"
+                                id="StreetName"
+                                placeholder="Street name"
+                                data-regex-0="^.+$"
+                                data-hint-0="Street name must not be empty"
+                            />
+                        </div>
+                        <div class="subdivision">
+                            <input
+                                class="input"
+                                type="text"
+                                name="subdivision"
+                                id="Subdivision"
+                                placeholder="Subdivision (Optional)"
+                            />
+                        </div>
+                        <div class="barangay">
+                            <input
+                                class="input"
+                                type="text"
+                                name="barangay"
+                                id="brgy"
+                                placeholder="Barangay/District/Locality"
+                                data-regex-0="^.+$"
+                                data-hint-0="Barangay must not be empty"
+                            />
+                        </div>
+                        <div class="municipality">
+                            <input
+                                class="input"
+                                type="text"
+                                name="municipality"
+                                id="mnclty"
+                                placeholder="City municipality"
+                                data-regex-0="^.+$"
+                                data-hint-0="City municipality must not be empty"
+                            />
+                        </div>
+                        <div class="province">
+                            <input
+                                class="input"
+                                type="text"
+                                name="province"
+                                id="Prvnc"
+                                placeholder="Province"
+                                data-regex-0="^.+$"
+                                data-hint-0="Province must not be empty"
+                            />
+                        </div>
+                        <div class="country">
+                            <input
+                                class="input"
+                                type="text"
+                                name="country"
+                                id="Country"
+                                placeholder="Country"
+                                data-regex-0="^.+$"
+                                data-hint-0="Country must not be empty"
+                            />
+                        </div>
+                        <div class="zip-code">
+                            <input
+                                class="input"
+                                type="number"
+                                name="zip-code"
+                                id="zip"
+                                placeholder="Zip code"
+                                data-regex-0="^.+$"
+                                data-hint-0="Zip code must not be empty"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="address-and-contact-info contact">
+                    <h3>Contact</h3>
+                    <div class="grid address-and-contact-grid">
+                        <div class="contact-no">
+                            <input
+                                class="input"
+                                type="tel"
+                                name="contact-no"
+                                id="mobile"
+                                placeholder="Mobile/Cellphone number"
+                                data-regex-0="^.+$"
+                                data-hint-0="Mobile/Cellphone number must not be empty"
+                                data-regex-1="^[\d\s]+$"
+                                data-hint-1="Mobile/Cellphone number must be digits only"
+                            />
+                        </div>
+                        <div class="email">
+                            <input
+                                class="input"
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="Email address"
+                                data-regex-0="^.+$"
+                                data-hint-0="Email address must not be empty"
+                                data-regex-1="^\w+(\.\w+)+@\w+(\.\w+)+$"
+                                data-hint-1="Email address must be valid"
+                            />
+                        </div>
+                        <div class="tel-no">
+                            <input
+                                class="input"
+                                type="tel"
+                                name="tel-no"
+                                id="tel"
+                                placeholder="Telephone number (Optional)"
+                                data-regex-0="^[\d\s]+$"
+                                data-hint-0="Telephone number must be digits only"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <footer>
+                    <button class="back-btn">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-6 h-6"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                        <p>Back</p>
+                    </button>
+                    <button class="submit-btn">
+                        <p>Education</p>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </footer>
+            </div>
+        </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://unpkg.com/@barba/core"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@barba/prefetch@2.1.10/dist/barba-prefetch.umd.min.js"></script>
+        <script src="/js/script.js"></script>
+    </body>
 </html>
