@@ -25,10 +25,10 @@ barba.init({
                 });
             },
             from: {
-                namespace: ['family', 'education', 'confirmation'],
+                namespace: ['personal-information', 'family', 'education', 'confirmation'],
             },
             to: {
-                namespace: ['family', 'education', 'confirmation'],
+                namespace: ['personal-information', 'family', 'education', 'confirmation'],
             },
         },
         {
@@ -60,7 +60,7 @@ barba.init({
                 namespace: ['home'],
             },
             to: {
-                namespace: ['family', 'education', 'confirmation'],
+                namespace: ['personal-information', 'family', 'education', 'confirmation'],
             },
         },
         {
@@ -109,9 +109,44 @@ barba.init({
             },
         },
         {
+            namespace: 'personal-information',
+            beforeEnter(data) {
+                if (!document.body.classList.contains('home-body')) {
+                    document.body.classList.add('registration-body');
+                    document.body.classList.remove('home-body');
+                    sidebar.classList.add('active');
+
+                    stepHeader.textContent = 'Step 1';
+
+                    updateLink(data.next.namespace);
+                    retrieveInputs(data.next.namespace);
+
+                    return;
+                }
+
+                stepHeader.textContent = 'Step 1';
+
+                updateLink(data.next.namespace);
+                retrieveInputs(data.next.namespace);
+            },
+            afterEnter(data) {
+                const submitBtn = data.next.container.querySelector('.submit-btn');
+                const backBtn = data.next.container.querySelector('.back-btn');
+
+                submitBtn.addEventListener('click', () => {
+                    if (validateInputs()) {
+                        barba.go('/registration/family');
+                    }
+                });
+                backBtn.addEventListener('click', () => {
+                    barba.go('/');
+                });
+            },
+        },
+        {
             namespace: 'family',
             beforeEnter(data) {
-                if (!document.body.classList.contains('registration-home')) {
+                if (!document.body.classList.contains('home-body')) {
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
                     sidebar.classList.add('active');
@@ -154,14 +189,14 @@ barba.init({
                     }
                 });
                 backBtn.addEventListener('click', () => {
-                    barba.go('/');
+                    barba.go('/registration/personal-information');
                 });
             },
         },
         {
             namespace: 'education',
             beforeEnter(data) {
-                if (!document.body.classList.contains('registration-home')) {
+                if (!document.body.classList.contains('home-body')) {
                     document.body.classList.add('registration-body');
                     document.body.classList.remove('home-body');
                     sidebar.classList.add('active');
@@ -249,7 +284,7 @@ function updateLink(namespace) {
 }
 
 function wrapInputs(container) {
-    container.querySelectorAll('input').forEach(el => {
+    container.querySelectorAll('.input').forEach(el => {
         const clone = el.cloneNode();
         const wrapper = document.createElement('div');
 
@@ -304,7 +339,7 @@ function validateInput(input) {
 }
 
 function addInputValidations(container) {
-    container.querySelectorAll('input').forEach(el => {
+    container.querySelectorAll('.input').forEach(el => {
         let previous = el.value;
         el.addEventListener('focus', () => {
             previous = el.value;
@@ -328,7 +363,7 @@ function addInputValidations(container) {
 function saveInputs(container) {
     const item = {};
 
-    container.querySelectorAll('input').forEach(input => {
+    container.querySelectorAll('.input').forEach(input => {
         item[input.name] = input.value;
     });
 
@@ -363,7 +398,7 @@ function loadRandomStudentNumber() {
 }
 
 function validateInputs() {
-    const inputs = [...document.querySelectorAll('input')];
+    const inputs = [...document.querySelectorAll('.input')];
     const isValid = inputs //
         .map(input => validateInput(input))
         .reduce((acc, input) => acc && input, true);
