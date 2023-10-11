@@ -9,7 +9,7 @@
 
 aside {
     background-color: var(--accent);
-    padding: 2rem 4rem;
+    padding: 4rem;
     display: none;
     position: relative;
     z-index: 1;
@@ -67,7 +67,7 @@ main {
 }
 
 .registration-body .container {
-    padding: 2rem 4rem;
+    padding: 4rem;
     max-height: 100vh;
     overflow-y: auto;
 }
@@ -186,7 +186,32 @@ main {
 }
 
 .personal-information-grid .password {
+    position: relative;
     grid-column: 4 / 7;
+}
+
+.personal-information-grid .password .show-password-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 1;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: 0.25s opacity;
+    opacity: 0.5;
+}
+
+.personal-information-grid .password .show-password-btn:hover {
+    opacity: 1;
+}
+
+.personal-information-grid .password .show-password-btn svg {
+    height: 1rem;
+    width: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text);
 }
 
 .personal-information-grid .year-level {
