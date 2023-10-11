@@ -281,7 +281,17 @@
                             />
                         </div>
                         <div class="birthdate">
-                            <input class="input" name="birthdate" type="date" placeholder="Birth Date" id="Birthdate" />
+                            <input
+                                comment="fake"
+                                class="input"
+                                name="birthdate"
+                                type="date"
+                                placeholder="Birth Date"
+                                id="Birthdate"
+                                onclick="console.log(this.value)"
+                                data-regex-0=":non-empty"
+                                data-hint-0="Birth Date must have a value"
+                            />
                         </div>
                         <div class="foreign-passport">
                             <select
