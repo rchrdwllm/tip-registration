@@ -165,6 +165,13 @@ main {
     grid-template-columns: repeat(3, 1fr);
 }
 
+.address-and-contact-grid .contact-grid {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
 .personal-information-grid .first-name {
     grid-column: 1 / 4;
 }
